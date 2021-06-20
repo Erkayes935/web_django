@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{% extends "main/home.html" %}
+
+{% block content %}
+
+    {% load crispy_forms_tags %}
+    {% load socialaccount %}
+    {% load static %}
+
+    <div class="container mx-5">
+
+
+        <div class=" signin text-center">
+            <a href="{% provider_login_url 'google' %}" class="text-dark"><img class="lazy" data-src="{% static "btn_google_signin_light_normal_web@2x.png" %}" style="width:14rem; height:auto">Login with Google</a>
+            <a href="{% provider_login_url "facebook" method="oauth2" %}">Login with Facebook</a>
+        </div>
+
+        <br><br>
+
+        <div style="width: 100%; height: 15px; border-bottom: 1px solid lightgray; text-align: center">
+    <span class="text-muted" style="margin-top:-15% !important; font-size: 11px; background-color: white; padding: 0px 10px;">
+      OR
+    </span>
+        </div>
+
+        <br><br>
+
+        <form method="post">
+            {% csrf_token %}
+            {{ form|crispy }}
+            <button type="submit"  class="btn btn-primary">Register</button>
+
+        </form>
+
+    </div>
+
+{% endblock %}
+</body>
+</html>
